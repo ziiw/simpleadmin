@@ -36,6 +36,7 @@ class Login extends React.Component {
   handleLogin () {
     // Start loading anim
     const isRemember = this.refs.remember.checked
+    
     this.props.login(this.refs.username.value, this.refs.password.value)
       .then((token) => {
         if (isRemember) localStorage.setItem('token', token);

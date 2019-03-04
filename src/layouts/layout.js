@@ -29,8 +29,8 @@ export default class Layout extends React.Component {
           <Provider store={store}>
             <ConnectedRouter history={history}>
               <Switch>
-                <PrivateRoute path='/' exact component={Dashboard} />
-                <Route path='/login' component={Login} />
+                <Route path='/login' exact component={Login} />
+                <PrivateRoute path='/' component={Dashboard} />
               </Switch>
             </ConnectedRouter>
           </Provider>

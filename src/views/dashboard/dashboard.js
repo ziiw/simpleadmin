@@ -4,8 +4,16 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Route, Switch } from 'react-router' // react-router v4
 
 import styles from './styles.styl'
+
+import Menu from 'Components/menu/menu'
+import Overview from 'Layouts/overview'
+import Orders from 'Layouts/orders/orders'
+import Order from 'Layouts/orders/order'
+import Catalog from 'Layouts/catalog/catalog'
+import Settings from 'Layouts/settings'
 
 // -----------------------------
 // Core
@@ -35,6 +43,14 @@ class Dashboard extends React.Component {
     return (
       <div className={styles.dashboard}>
         <h1>Welcome to your Dashboard</h1>
+        <Menu />
+        <Switch>
+          <Route path='/' exact component={Overview} />
+          <Route path='/orders/:id' component={Order} />
+          <Route path='/orders' component={Orders} />
+          <Route path='/catalog' component={Catalog} />
+          <Route path='/settings' component={Settings} />
+        </Switch>
       </div>
     )
   }
