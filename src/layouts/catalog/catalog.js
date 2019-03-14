@@ -8,7 +8,7 @@ import { Route, Switch } from 'react-router' // react-router v4
 
 import styles from './catalog.styl'
 
-import { getAllProducts } from 'Actions/catalog'
+import { get } from 'Actions/catalogs'
 
 import ProductsList from 'Components/productsList/productsList'
 import AddProductForm from 'Components/addProductForm/addProductForm'
@@ -28,7 +28,7 @@ class Catalog extends React.Component {
     this.animEnter()
     console.log('[Catalog] - Mounted')
 
-    this.props.getAllProducts()
+    this.props.get()
   }
 
   componentWillUnmount () {
@@ -40,13 +40,15 @@ class Catalog extends React.Component {
   }
 
   render () {
+    const name = this.props.catalogs.length ? this.props.catalogs[0].name : ""
+    const products = this.props.catalogs.length ? this.props.catalogs[0].products : []
     return (
       <div className={styles.catalog}>
-        <h2>Catalog</h2>
+        <h2 className={styles.title}>Catalog: {name}</h2>
+        <button>Add catalog</button>
         <Switch>
-          <Route path='' exact component={() => <ProductsList products={this.props.catalog.products || []}/>} />
+          <Route path='' exact component={() => <ProductsList products={products || []}/>} />
           <Route path='/add' component={AddProductForm} />
-          {/* <ProductsList products={this.props.catalog.products || []}/> */}
         </Switch>
       </div>
     )
@@ -54,11 +56,11 @@ class Catalog extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  catalog: state.catalog
+  catalogs: state.catalogs
 })
 
 const mapDispatchToProps = dispatch => ({
-  getAllProducts: () => dispatch(getAllProducts())
+  get: () => dispatch(get())
 })
 
 Catalog.propTypes = {
