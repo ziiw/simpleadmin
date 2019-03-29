@@ -42,15 +42,18 @@ class Dashboard extends React.Component {
   render () {
     return (
       <div className={styles.dashboard}>
-        <h1>Welcome to your Dashboard</h1>
-        <Menu />
-        <Switch>
-          <Route path='/' exact component={Overview} />
-          <Route path='/orders/:id' component={Order} />
-          <Route path='/orders' component={Orders} />
-          <Route path='/catalog' component={Catalog} />
-          <Route path='/settings' component={Settings} />
-        </Switch>
+        <div className={styles.menuWrapper}>
+          <Menu />
+        </div>
+        <div className={styles.contentWrapper}>
+          <Switch>
+            <Route path='/' exact component={Overview} />
+            <Route path='/orders/:id' component={Order} />
+            <Route path='/orders' component={Orders} />
+            <Route path='/catalog' component={Catalog} />
+            <Route path='/settings' component={Settings} />
+          </Switch>
+        </div>
       </div>
     )
   }
