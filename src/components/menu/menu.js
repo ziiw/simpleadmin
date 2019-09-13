@@ -48,7 +48,9 @@ class Menu extends React.Component {
 }
 
 const mapStateToProps = state => ({
-
+  // Trigger re-render just by mapping
+  // the router state value in our props
+  router: state.router
 })
 
 const mapDispatchToProps = dispatch => ({

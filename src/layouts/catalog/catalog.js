@@ -2,16 +2,17 @@
 // Imports
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { Route, Switch } from 'react-router' // react-router v4
+import { Route, Switch, Link } from 'react-router-dom' // react-router v4
 
 import styles from './catalog.styl'
 
-import { get } from 'Actions/catalogs'
+import { getAll } from 'Actions/products'
 
 import ProductsList from 'Components/productsList/productsList'
-import AddProductForm from 'Components/addProductForm/addProductForm'
+
+import AddProduct from 'Layouts/addProduct/addProduct'
+import EditProduct from 'Layouts/editProduct/editProduct'
 
 // -----------------------------
 // Core
@@ -28,7 +29,7 @@ class Catalog extends React.Component {
     this.animEnter()
     console.log('[Catalog] - Mounted')
 
-    this.props.get()
+    this.props.getAll()
   }
 
   componentWillUnmount () {
@@ -40,15 +41,18 @@ class Catalog extends React.Component {
   }
 
   render () {
-    const name = this.props.catalogs.length ? this.props.catalogs[0].name : ""
-    const products = this.props.catalogs.length ? this.props.catalogs[0].products : []
+    const products = this.props.products.length ? this.props.products : []
+
     return (
       <div className={styles.catalog}>
-        <h2 className={styles.title}>Catalog: {name}</h2>
-        <button>Add catalog</button>
+        <h2 className={styles.title}>Catalog</h2>
+        {this.props.history.location.pathname === '/catalog' && <Link to='/catalog/add'>Add products</Link>}
+        {this.props.history.location.pathname.indexOf('add') > -1 && <Link to='/catalog'>Back to products</Link>}
+        {this.props.history.location.pathname.indexOf('edit') > -1  && <Link to='/catalog'>Back to products</Link>}
         <Switch>
-          <Route path='' exact component={() => <ProductsList products={products || []}/>} />
-          <Route path='/add' component={AddProductForm} />
+          <Route path='/catalog/' exact component={() => <ProductsList products={products || []}/>} />
+          <Route path='/catalog/add' exact component={AddProduct} />
+          <Route path='/catalog/edit/:id' exact component={EditProduct} />
         </Switch>
       </div>
     )
@@ -56,11 +60,11 @@ class Catalog extends React.Component {
 }
 
 const mapStateToProps = state => ({
-  catalogs: state.catalogs
+  products: state.products
 })
 
 const mapDispatchToProps = dispatch => ({
-  get: () => dispatch(get())
+  getAll: () => dispatch(getAll())
 })
 
 Catalog.propTypes = {

@@ -2,9 +2,9 @@
 // Imports
 
 import React from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 
+import { create } from 'Actions/products'
 import styles from './styles.styl'
 
 // -----------------------------
@@ -13,7 +13,8 @@ import styles from './styles.styl'
 class AddProductForm extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+    }
   }
 
   componentDidMount () {
@@ -29,10 +30,28 @@ class AddProductForm extends React.Component {
 
   }
 
+  handleImport () {
+    console.log('Import single')
+  }
+
   render () {
     return (
-      <div>
-        <p>Add Product</p>
+      <div className={styles.addProductForm}>
+        <h1>Add product</h1>
+        <form>
+          <input type='text' placeholder='Reference'/> <br/>
+          <input type='text' placeholder='Name'/>
+          <textarea defaultValue='Description'></textarea>
+          <textarea defaultValue='Meta'></textarea>
+          <input type='text' placeholder='Price'/>
+          <input type='text' placeholder='PriceHT'/>
+          <input type='text' placeholder='Visuals'/>
+          <select>
+            <option>Category</option>
+          </select>
+          <input type='number' placeholder='Quantity'/>
+        </form>
+        <button onClick={this.handleImport.bind(this)}>Add product</button>
       </div>
     )
   }
@@ -42,7 +61,7 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  
+  create: (products) => dispatch(create(products))
 })
 
 AddProductForm.propTypes = {

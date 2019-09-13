@@ -25,7 +25,9 @@ class Orders extends React.Component {
     // Component appear
     this.animEnter()
     console.log('[Orders] - Mounted')
-    this.props.getAllOrders()
+    if (this.props.orders.length === 0) {
+      this.props.getAllOrders()
+    }
   }
 
   componentWillUnmount () {
@@ -40,7 +42,9 @@ class Orders extends React.Component {
     return (
       <div className={styles.orders}>
         <h2>Orders</h2>
-        <OrdersList orders={this.props.orders}/>
+        <div className={styles.content}>
+          <OrdersList orders={this.props.orders}/>
+        </div>
       </div>
     )
   }
