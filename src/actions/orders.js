@@ -35,29 +35,3 @@ export const getAllOrders = () => {
     })
   }
 }
-
-// export const getOrder = (id) => {
-//   return dispatch => {
-//     return new Promise ((resolve, reject) => {
-//       Axios.get(`${Constants.SERVER.HOST}/api/order/${id}`, 
-//         {headers: {'x-access-token': localStorage.getItem('token')}})
-//       .then(({data}) => {
-//         if (data.success) {
-//           dispatch({
-//             type: ACTIONS.GET_ORDER,
-//             payload: {order: data.order}
-//           })
-//           resolve()
-//         } else {
-//           dispatch({
-//             type: ACTIONS.GET_ORDER_FAILED,
-//             payload: {message: data.message}
-//           })
-//           reject()
-//         }
-//       }).catch((error) => {
-//         console.error(error)
-//       })
-//     })
-//   }
-// }

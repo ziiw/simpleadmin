@@ -2,13 +2,14 @@
 // Imports
 
 import React from 'react'
-import PropTypes from 'prop-types'
+import { Switch, Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import { getAllOrders } from 'Actions/orders'
 
 import styles from './orders.styl'
 
+import Order from 'Layouts/orders/order'
 import OrdersList from 'Components/ordersList/ordersList'
 
 // -----------------------------
@@ -25,9 +26,7 @@ class Orders extends React.Component {
     // Component appear
     this.animEnter()
     console.log('[Orders] - Mounted')
-    if (this.props.orders.length === 0) {
-      this.props.getAllOrders()
-    }
+    this.props.getAllOrders()
   }
 
   componentWillUnmount () {
@@ -43,7 +42,10 @@ class Orders extends React.Component {
       <div className={styles.orders}>
         <h2>Orders</h2>
         <div className={styles.content}>
-          <OrdersList orders={this.props.orders}/>
+          <Switch>
+            <Route path='/orders' exact component={() => <OrdersList orders={this.props.orders}/>} />
+            <Route path='/orders/:id' exact component={Order} />
+          </Switch>
         </div>
       </div>
     )

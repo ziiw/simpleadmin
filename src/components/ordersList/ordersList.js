@@ -33,19 +33,36 @@ class OrdersList extends React.Component {
   render () {
     return (
       <div className={styles.list}>
+        <div className={styles.ordersHeader}>
+          <div className={styles.details}>
+            <p>Order date</p>
+          </div>
+          <div className={styles.details}>
+            <p>Customer email</p>
+          </div>
+          <div className={styles.details}>
+            <p>Number of products</p>
+          </div>
+          <div className={styles.details}>
+            <p>Discount used</p>
+          </div>
+          <div className={styles.details}>
+            <p>Status</p>
+          </div>
+          <div className={styles.details}>
+            <p>Actions</p>
+          </div>
+        </div>
         {this.props.orders.map((item, index) => {
           return <div key={item._id} className={styles.order}>
-            <div className={styles.details}>
-              <p>{index}</p>
-            </div>
-            <div className={styles.details}>
-              <p>{item._id}</p>
-            </div>
             <div className={styles.details}>
               <p>{new Date(item.date).toLocaleString()}</p>
             </div>
             <div className={styles.details}>
-              <p>{item.cart.length} items</p>
+              <p>{item.customer.email}</p>
+            </div>
+            <div className={styles.details}>
+              <p>{item.products.length} items</p>
             </div>
             <div className={styles.details}>
               <p>{item.discount === '' ? '∅' : item.discount}</p>

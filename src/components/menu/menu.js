@@ -36,11 +36,13 @@ class Menu extends React.Component {
     const path = window.location.pathname
     return (
       <div className={styles.menu}>
+        <h2>Hi Beauty</h2>
         <ul>
-          <li className={path.length < 2 && styles.selected}><Link to='/'>Overview</Link></li>
-          <li className={path.indexOf('orders') >= 0 && styles.selected}><Link to='/orders'>Orders</Link></li>
-          <li className={path.indexOf('catalog') >= 0 && styles.selected}><Link to='/catalog'>Catalog</Link></li>
-          <li className={path.indexOf('settings') >= 0 && styles.selected}><Link to='/settings'>Settings</Link></li>
+          <li className={path.length < 2 ? styles.selected : {}}><Link to='/'>Overview</Link></li>
+          <li className={path.indexOf('catalog') >= 0 ? styles.selected : {}}><Link to='/catalog'>Catalog</Link></li>
+          <li className={path.indexOf('orders') >= 0 ? styles.selected : {}}><Link to='/orders'>Orders</Link></li>
+          <li className={path.indexOf('customers') >= 0 ? styles.selected : {}}><Link to='/customers'>Customers</Link></li>
+          <li className={path.indexOf('settings') >= 0 ? styles.selected : {}}><Link to='/settings'>Settings</Link></li>
         </ul>
       </div>
     )

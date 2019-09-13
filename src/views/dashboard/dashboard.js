@@ -11,8 +11,8 @@ import styles from './styles.styl'
 import Menu from 'Components/menu/menu'
 import Overview from 'Layouts/overview'
 import Orders from 'Layouts/orders/orders'
-import Order from 'Layouts/orders/order'
 import Catalog from 'Layouts/catalog/catalog'
+import Customers from 'Layouts/customers/customers'
 import Settings from 'Layouts/settings'
 
 // -----------------------------
@@ -48,9 +48,9 @@ class Dashboard extends React.Component {
         <div className={styles.contentWrapper}>
           <Switch>
             <Route path='/' exact component={Overview} />
-            <Route path='/orders/:id' component={Order} />
             <Route path='/orders' component={Orders} />
             <Route path='/catalog' component={Catalog} />
+            <Route path='/customers' component={Customers} />
             <Route path='/settings' component={Settings} />
           </Switch>
         </div>

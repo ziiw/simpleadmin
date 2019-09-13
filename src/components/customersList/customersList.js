@@ -32,22 +32,18 @@ class ProductsList extends React.Component {
 
   render () {
     return (
-      <div className={styles.list}>
-
-        {this.props.products.length > 0 && this.props.products.slice(0, 5).map((item) => {
-          return (<div key={item._id} className={styles.product}>
-            <div className={styles.productInfo}><img src={item.visuals[0]} /></div>
-            <div className={styles.productInfo}>{item.reference}</div>
-            <div className={styles.productInfo}>{item.name}</div>
-            <div className={styles.productActions}>
-              <Link to={`/catalog/edit/${item.reference}`}>Edit</Link>
+      <div className={styles.customersList}>
+        {this.props.customers.length && this.props.customers.slice(0, 5).map((customer) => {
+          return (<div key={customer._id} className={styles.customer}>
+            <div className={styles.customerInfo}>{customer.email}</div>
+            <div className={styles.customerInfo}>{customer.firstname} {customer.lastname}</div>
+            <div className={styles.customerInfo}>{customer.orders.length} orders</div>
+            <div className={styles.customerActions}>
+              <Link to={`/customers/edit/${customer._id}`}>Edit</Link>
             </div>
           </div>)
         })}
-
-        {
-          this.props.products.length == 0 && <p>0 products to display</p>
-        }
+        {this.props.customers.length == 0 && <p>0 customers to display</p>}
       </div>
     )
   }

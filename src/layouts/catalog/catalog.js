@@ -11,8 +11,8 @@ import { getAll } from 'Actions/products'
 
 import ProductsList from 'Components/productsList/productsList'
 
-import AddProduct from 'Layouts/addProduct/addProduct'
-import EditProduct from 'Layouts/editProduct/editProduct'
+import AddProduct from 'Layouts/catalog/addProduct/addProduct'
+import EditProduct from 'Layouts/catalog/editProduct/editProduct'
 
 // -----------------------------
 // Core

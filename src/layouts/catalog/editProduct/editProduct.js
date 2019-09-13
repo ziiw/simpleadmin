@@ -27,7 +27,7 @@ class EditProduct extends React.Component {
       const ref = nextProps.match.params.id
       return {
         ...prevState,
-        product: nextProps.products.filter((p) => p.reference === ref)[0]
+        product: Object.assign({}, nextProps.products.filter((p) => p.reference === ref)[0])
       }
     } else {
       return prevState
